@@ -5,14 +5,17 @@ WORKDIR /mayfly
 
 COPY mayfly_go_web .
 
-RUN yarn config set registry 'https://registry.npmmirror.com' && \
-    yarn install && \
+# RUN yarn config set registry 'https://registry.npmmirror.com' && \
+#     yarn install && \
+#     yarn build
+
+RUN yarn install && \
     yarn build
 
 # 构建后端资源
 FROM golang:1.22 as be-builder
 
-ENV GOPROXY https://goproxy.cn
+# ENV GOPROXY https://goproxy.cn
 WORKDIR /mayfly
 
 # Copy the go source for building server
