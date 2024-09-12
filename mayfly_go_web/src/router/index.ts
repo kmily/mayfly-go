@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { getToken } from '@/common/utils/storage';
@@ -14,7 +14,7 @@ import { initBackendRoutes } from './dynamicRouter';
 
 // 添加静态路由
 const router = createRouter({
-    history: createWebHashHistory(),
+    history: createWebHistory(),
     routes: [...staticRoutes, ...errorRoutes],
 });
 
