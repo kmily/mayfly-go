@@ -1,17 +1,3 @@
-# 构建前端资源
-FROM node:18-bookworm-slim as fe-builder
-
-WORKDIR /mayfly
-
-COPY mayfly_go_web .
-
-# RUN yarn config set registry 'https://registry.npmmirror.com' && \
-#     yarn install && \
-#     yarn build
-
-RUN yarn install && \
-    yarn build
-
 # 构建后端资源
 FROM golang:1.22 as be-builder
 
@@ -22,8 +8,6 @@ WORKDIR /mayfly
 COPY server .
 
 RUN go mod tidy && go mod download
-
-COPY --from=fe-builder /mayfly/dist /mayfly/static/static
 
 # Build
 RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux \
