@@ -52,7 +52,7 @@ func (a *Oauth2Login) OAuth2Callback(rc *req.Ctx) {
 	client, oauth := a.getOAuthClient()
 
 	code := rc.Query("code")
-	biz.NotEmpty(code, "code不能为空")
+	biz.NotEmpty(code, "code值不能为空")
 
 	state := rc.Query("state")
 	biz.NotEmpty(state, "state不能为空")
@@ -195,7 +195,7 @@ func (a *Oauth2Login) getOAuthClient() (*oauth2.Config, *config.Oauth2Login) {
 			AuthURL:  oath2LoginConfig.AuthorizationURL,
 			TokenURL: oath2LoginConfig.AccessTokenURL,
 		},
-		RedirectURL: oath2LoginConfig.RedirectURL + "/#/oauth2/callback",
+		RedirectURL: oath2LoginConfig.RedirectURL,
 		Scopes:      strings.Split(oath2LoginConfig.Scopes, ","),
 	}
 	return client, oath2LoginConfig
