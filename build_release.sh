@@ -122,7 +122,7 @@ function buildxDocker() {
 
 function runBuild() {
     # read -p "请选择构建版本[0|其他->除docker镜像外其他 1->linux-amd64 2->linux-arm64 3->windows 4->mac 5->docker 6->docker buildx]: " buildType
-    buildType="4"
+    buildType="3"
     toPath="."
     imageVersion="latest"
     copyDocScript="1"
