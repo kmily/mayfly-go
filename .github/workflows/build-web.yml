@@ -1,3 +1,4 @@
+name: build web
 on:
   workflow_dispatch:
 
