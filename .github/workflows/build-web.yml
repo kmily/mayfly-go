@@ -1,0 +1,28 @@
+name: build web
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18]
+    name: Node ${{ matrix.node }} sample
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      ## web build
+      - run: yarn --cwd ./mayfly_go_web
+      - run: yarn --cwd ./mayfly_go_web build
+
+      ## upload zip file
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mayfly_go_web
+          path: ./mayfly_go_web/dist
+          retention-days: 1  # 将保留天数设置为 1 天 最多可设置90天
