@@ -121,15 +121,15 @@ function buildxDocker() {
 }
 
 function runBuild() {
-    read -p "请选择构建版本[0|其他->除docker镜像外其他 1->linux-amd64 2->linux-arm64 3->windows 4->mac 5->docker 6->docker buildx]: " buildType
-
+    # read -p "请选择构建版本[0|其他->除docker镜像外其他 1->linux-amd64 2->linux-arm64 3->windows 4->mac 5->docker 6->docker buildx]: " buildType
+    buildType="4"
     toPath="."
     imageVersion="latest"
     copyDocScript="1"
 
     if [[ "${buildType}" != "5" ]] && [[ "${buildType}" != "6" ]] ; then
         # 构建结果的目的路径
-        read -p "请输入构建产物输出目录[默认当前路径]: " toPath
+        # read -p "请输入构建产物输出目录[默认当前路径]: " toPath
         if [ ! -d ${toPath} ] ; then
             echo_red "构建产物输出目录不存在!"
             exit;
@@ -138,7 +138,7 @@ function runBuild() {
             toPath="."
         fi
 
-        read -p "是否拷贝文档&脚本[0->否 1->是][默认是]: " copyDocScript
+        # read -p "是否拷贝文档&脚本[0->否 1->是][默认是]: " copyDocScript
         if [ "${copyDocScript}" == "" ] ; then
             copyDocScript="1"
         fi
@@ -148,13 +148,13 @@ function runBuild() {
         toPath=`pwd`
 
         # read -p "是否构建前端[0|其他->否 1->是 2->构建并拷贝至server/static/static]: " runBuildWeb
-        runBuildWeb="2"
+        runBuildWeb="1"
         # 编译web前端
         buildWeb ${runBuildWeb}
     fi
 
     if [[ "${buildType}" == "5" ]] || [[ "${buildType}" == "6" ]] ; then
-        read -p "请输入docker镜像版本号[默认latest]: " imageVersion
+        # read -p "请输入docker镜像版本号[默认latest]: " imageVersion
 
         if [ "${imageVersion}" == "" ] ; then
             imageVersion="latest"
