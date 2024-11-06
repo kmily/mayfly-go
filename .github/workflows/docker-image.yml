@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mayfly-go:v1.8.5
+      run: docker build . --file Dockerfile.sourcebuild --tag mayfly-go:v1.8.5
     - name: export image 
       run: docker save -o mayfly-go.tar mayfly-go:v1.8.5
     - name: Upload artifact
