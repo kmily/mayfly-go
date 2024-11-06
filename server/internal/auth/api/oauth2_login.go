@@ -164,6 +164,7 @@ func (a *Oauth2Login) OAuth2ClientCallback(rc *req.Ctx) {
 	biz.NotBlank(userId, "用户唯一标识字段值不能为空")
 
 	// 判断是登录还是绑定
+	stateAction = "login"
 	if stateAction == "login" {
 		a.doLoginAction(rc, userId, oauth)
 	} else if sAccountId, ok := strings.CutPrefix(stateAction, "bind:"); ok {
