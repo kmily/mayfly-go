@@ -1,5 +1,5 @@
 # 构建后端资源
-FROM golang:1.22 as be-builder
+FROM golang:1.23 as be-builder
 
 # ENV GOPROXY https://goproxy.cn
 WORKDIR /mayfly
