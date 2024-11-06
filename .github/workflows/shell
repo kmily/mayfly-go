@@ -1,0 +1,21 @@
+name: build release
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: run .sh file
+      run: ./build_release.sh 5
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: mayfly-go
+        path: .
+        retention-days: 1  # 将保留天数设置为 1 天 最多可设置90天
